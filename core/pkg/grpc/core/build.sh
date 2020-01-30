@@ -1,0 +1,1 @@
+protoc -I core/ core/service.proto --go_out=plugins=grpc:core

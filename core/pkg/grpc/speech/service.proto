@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package grpcSpeech;
+
+service grpcSpeech {
+    rpc DetermineSpeech(SpeechRequest) returns(SpeechResponse) {}
+    rpc CreateVariant(SpeechRequest) returns(SpeechResponse) {}
+}
+
+message SpeechRequest {
+    string Message = 1;
+}
+
+message SpeechResponse {
+    int32 Duration = 1; // miliseconds
+    string Message = 2;             
+    string GraphicURL = 3;
+    string GraphicType = 4;
+    string Error =5;
+}
