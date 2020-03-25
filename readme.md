@@ -9,7 +9,7 @@ This repo contains a bulk of mono mirror of the repositories located [here](http
 > Managed with [easy mono mirror](https://github.com/GuyARoss/easy-mono-mirror)
 
 ### What is project orva? 
-Orva is a "digital assistant" that features an extreamly modular system for 
+Orva is a "digital assistant" that features an extremely modular system for 
 handling dynamic speech, custom skills (with dynamic inferring), memorization, and more. 
 
 ## Usage
