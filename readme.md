@@ -15,3 +15,9 @@ handling dynamic speech, custom skills (with dynamic inferring), memorization, a
 ## Usage
 ### Web Interface
 To connect to the "offical" core web-app located [here](https://github.com/project-orva/core-webapp). First clone down the web app, follow the usage instructions for installation, then input your core-web-proxy url upon startup.  
+### SDK (Javascript)
+Current SDK is only available for javascript, and includes the following. 
+- Skill creation & registration framework. 
+- GRPC client to core service (for creating interfaces).
+- GPPC client to profile service .
+- Server side persitance utilities. 
