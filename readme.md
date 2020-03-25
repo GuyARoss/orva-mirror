@@ -14,4 +14,4 @@ handling dynamic speech, custom skills (with dynamic inferring), memorization, a
 
 ## Usage
 ### Web Interface
-To connect to the "offical" core web-app located [here](https://github.com/project-orva/core-web-app). First clone down the web app, follow the usage instructions for installation, then input your core-web-proxy url upon startup.  
+To connect to the "offical" core web-app located [here](https://github.com/project-orva/core-webapp). First clone down the web app, follow the usage instructions for installation, then input your core-web-proxy url upon startup.  
