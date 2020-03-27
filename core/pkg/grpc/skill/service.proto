@@ -3,28 +3,30 @@ syntax = "proto3";
 package grpcSkill;
 
 service grpcSkill {
-    rpc createSkill(Skill) returns(SuccessResponse) {}
-    rpc deleteSkill(Skill) returns(SuccessResponse) {}
-    rpc updateSkill(Skill) returns(SuccessResponse) {}
-    rpc findByID(FindRequest) returns(Skill) {}
-
-    rpc queryByInvocation(QueryRequest) returns(Skill) {}
+    rpc RegisterCurrentInstance(RegisterRequest) returns(RegisterResponse) {}
+    rpc DetermineSkillFromMessage(SkillDeterminationRequest) returns(SkillDeterminationResponse) {}
 }
 
-message Skill {
-    string ID   =1; 
-    string Endpoint = 2;
-    int32 AccessLevel = 3;    
+message SkillDeterminationResponse {
+    float Accuracy = 1;
+    float Duration = 2;
+    string FowardAddress = 3;
+}
+ 
+message SkillDeterminationRequest {
+    string Message = 1;
 }
 
-message FindRequest {
-    string ID = 1;
+message SkillInfo {
+    string ExampleText = 1;
+    string POSMapping = 2;
 }
 
-message QueryRequest {
-    string Statement = 1;
+message RegisterRequest {
+    repeated SkillInfo ExampleInfo = 1; 
+    string SkillName = 2;
 }
 
-message SuccessResponse {
-    bool Success = 1;
+message RegisterResponse {
+    bool IsRegistered = 1;
 }

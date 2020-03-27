@@ -9,15 +9,9 @@ This repo contains a bulk of mono mirror of the repositories located [here](http
 > Managed with [easy mono mirror](https://github.com/GuyARoss/easy-mono-mirror)
 
 ### What is project orva? 
-Orva is a "digital assistant" that features an extremely modular system for 
+Orva is a "digital assistant" that features an extreamly modular system for 
 handling dynamic speech, custom skills (with dynamic inferring), memorization, and more. 
 
 ## Usage
 ### Web Interface
-To connect to the "offical" core web-app located [here](https://github.com/project-orva/core-webapp). First clone down the web app, follow the usage instructions for installation, then input your core-web-proxy url upon startup.  
-### SDK (Javascript)
-Current SDK is only available for javascript, and includes the following. 
-- Skill creation & registration framework. 
-- GRPC client to core service (for creating interfaces).
-- GPPC client to profile service .
-- Server side persitance utilities. 
+To connect to the "offical" core web-app located [here](https://github.com/project-orva/core-web-app). First clone down the web app, follow the usage instructions for installation, then input your core-web-proxy url upon startup.  
