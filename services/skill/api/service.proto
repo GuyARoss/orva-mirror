@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package grpcSkill;
+
+service grpcSkill {
+    rpc RegisterSkill(RegisterRequest) returns(RegisterResponse) {}
+    rpc ProcessSkillRequest(ProcessRequest) returns(ProcessResponse) {}
+}
+
+message ProcessResponse {
+    string ForwardAddress = 1;
+    string SubsetID = 2;
+}
+
+message ProcessRequest {
+    string Message = 1;
+    string TransactionID = 2;
+}
+
+message SkillInfo {
+    string ExampleText = 1;
+    string GroupID = 2;
+}
+
+message RegisterRequest {
+    string SkillName = 1;
+    repeated SkillInfo Examples = 2; 
+    string ForwardAddress = 3;
+    int32 ForwardType = 4;
+}
+
+message RegisterResponse {
+    bool IsRegistered = 1;
+}

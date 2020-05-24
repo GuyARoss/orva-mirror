@@ -1,2 +1,0 @@
-# Speech-Service Impl
-WIP
