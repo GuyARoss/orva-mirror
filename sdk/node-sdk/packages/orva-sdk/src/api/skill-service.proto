@@ -4,17 +4,6 @@ package grpcSkill;
 
 service grpcSkill {
     rpc RegisterSkill(RegisterRequest) returns(RegisterResponse) {}
-    rpc ProcessSkillRequest(ProcessRequest) returns(ProcessResponse) {}
-}
-
-message ProcessResponse {
-    string ForwardAddress = 1;
-    string SubsetID = 2;
-}
-
-message ProcessRequest {
-    string Message = 1;
-    string TransactionID = 2;
 }
 
 message SkillInfo {

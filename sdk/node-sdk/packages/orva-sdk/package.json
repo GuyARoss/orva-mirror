@@ -1,0 +1,35 @@
+{
+  "name": "@orva-sdk/core",
+  "version": "0.5.0",
+  "description": "offical orva skills sdk",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch"
+  },
+  "author": "Guy A. Ross",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^0.6.2",
+    "@grpc/proto-loader": "^0.5.4",
+    "@types/uuid": "^8.0.0",
+    "grpc": "^1.23.3",
+    "pos": "^0.4.2",
+    "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@netflix/tslint-config": "^1.0.1",
+    "ts-jest": "^26.0.0",
+    "typescript": "^3.7.5"
+  }
+}
