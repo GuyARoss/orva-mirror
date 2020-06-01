@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 
 	grpcSkill "github.com/GuyARoss/project-orva/pkg/grpc/skill"
 	grpcSpeech "github.com/GuyARoss/project-orva/pkg/grpc/speech"
@@ -31,7 +32,7 @@ func (req *RoutineRequest) invokeRoutineHandlers(ctx *orva.SessionContext) {
 	req.fowardContextToSkillService(ctx)
 	req.fowardContextToSpeechService(ctx)
 
-	if len(*ctx.AppliedMessages) < 1 {
+	if len(ctx.AppliedMessages) == 0 {
 		ctx.Append(&orva.Response{
 			Statement: "Having a hard time processing that",
 		})
@@ -39,16 +40,21 @@ func (req *RoutineRequest) invokeRoutineHandlers(ctx *orva.SessionContext) {
 }
 
 func (req *RoutineRequest) fowardContextToSkillService(ctx *orva.SessionContext) {
-	sq := &grpcSkill.SkillDeterminationRequest{
-		Message: ctx.InitialInput.Message,
-	}
-
-	resp, err := req.SkillClient.DetermineSkillFromMessage(context.Background(), sq)
-	if err != nil || len(resp.FowardAddress) < 0 {
+	if req.SkillClient == nil {
 		return
 	}
 
-	skillResp, skillErr := orva.SkillProxy(resp.FowardAddress, ctx)
+	sq := &grpcSkill.ProcessRequest{
+		Message: ctx.InitialInput.Message,
+		TransactionID: "test123",
+	}
+	
+	resp, err := req.SkillClient.ProcessSkillRequest(context.Background(), sq)
+	if err != nil || len(resp.ForwardAddress) < 0 {
+		return
+	}
+
+	skillResp, skillErr := orva.SkillProxy(resp.ForwardAddress, ctx)
 
 	if skillErr == nil {
 		ctx.Append(skillResp)
@@ -58,6 +64,10 @@ func (req *RoutineRequest) fowardContextToSkillService(ctx *orva.SessionContext)
 
 // FowardContextToSpeechService fowards context to speech service
 func (req *RoutineRequest) fowardContextToSpeechService(ctx *orva.SessionContext) {
+	if req.SpeechClient == nil {
+		return
+	}
+
 	// @@ add the username to the request?
 	sq := &grpcSpeech.SpeechRequest{
 		Message: ctx.InitialInput.Message,
@@ -79,6 +89,17 @@ func (req *RoutineRequest) fowardContextToSpeechService(ctx *orva.SessionContext
 func (req *RoutineRequest) accountRoutineHandler(ctx *orva.SessionContext) {
 	user, userErr := req.verifyUser(ctx.InitialInput.UserID)
 	device, deviceErr := req.verifyDevice(ctx.InitialInput.DeviceID)
+
+	if userErr != nil && deviceErr != nil {
+		ctx.UserAccessLvl = orva.AnonAccess
+		resp := &orva.Response{
+			Statement: "Could not validate your request",
+		}
+
+		ctx.Append(resp)
+
+		return
+	}
 
 	if userErr != nil {
 		ctx.UserAccessLvl = orva.AnonAccess
