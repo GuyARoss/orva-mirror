@@ -20,7 +20,7 @@ Modern digital assistance will typically have an issue doing these assertions, e
 
 __e.g__ If I tell ask my friend to turn on the television, then told him to "turn it up", he would have known to increase the volume on the television. Or if were to tell him to add 5 to 5, then immediately after asked him to multiply that by 1, he could tell me that is 10. 
 
-The approach that I took to this problem is to remember important features of past resolved statements then applying them when a new request is made with lower weights than the bast request. After this we can just do some probabilistic determination of what request is most likely being made, and return it.
+The approach that I took to this problem is to remember important features of past resolved statements then applying them when a new request is made with lower weights than the past request. After this we can just do some probabilistic determination of what request is most likely being made, and return it.
 
 #### Ability to chain requests in a single dialog statement. 
 I want to include more than one statement within my request. 
